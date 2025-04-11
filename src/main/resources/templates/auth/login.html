@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar Sesión - Bomberos Tarapoto 71</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="login-container">
+    <div class="logo-header">
+      <img src="/img/logobomberos.jpg" alt="Logo Bomberos" class="logo">
+      <div>
+        <p class="header-title">Bomberos Tarapoto 71</p>
+        <p class="header-subtitle">Cap. CBP Juan Roberto Acevedo</p>
+      </div>
+    </div>
+    
+    
+    <div class="login-box">
+      <h2>Iniciar Sesión</h2>
+      <form id="loginForm"method="post" action="/auth/login2">
+
+          <label for="username">Usuario</label>
+            <input type="text" id="username" name="username" required>
+
+          <label for="password">Contraseña</label>
+          <div class="password-field">
+            <input type="password" id="password" name="password" required>
+            <span class="toggle-password" onclick="togglePassword()">Mostrar</span>
+          </div>
+
+          <!-- Mensaje de error -->
+          <p id="error-message" class="error-message hidden">USUARIO O CONTRASEÑA INCORRECTAS</p>
+
+          <button type="submit">INGRESAR</button>
+          <p class="forgot-password">
+            <a href="recuperar.html">¿Olvidaste tu Contraseña?</a>
+          </p>        
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/script.js"></script> 
+</body>
+</html>
