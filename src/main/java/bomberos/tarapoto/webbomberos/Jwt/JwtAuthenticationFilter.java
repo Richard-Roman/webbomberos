@@ -38,7 +38,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
             final String username;
 
             if(tockend==null){
-                filterChain.doFilter(request, response);
+                if (isPublicPath(request)) {
+                    filterChain.doFilter(request, response); // Deja pasar solo las rutas públicas (login, recursos estáticos, etc.)
+                } else {
+                    redirectToLogin(request, response); // Si es una página protegida, redirige
+                }
                 return;
             }
 
@@ -92,6 +96,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
         
         // Redirigir a login
         response.sendRedirect(request.getContextPath() + "/auth/vlogin");
+    }
+
+    private boolean isPublicPath(HttpServletRequest request) {
+        String path = request.getServletPath();
+        // Define aquí las rutas públicas que no requieren autenticación
+        return path.startsWith("/auth/")        
+            || path.startsWith("/css/")
+            || path.startsWith("/js/")
+            || path.startsWith("/img/");
     }
 
 }
