@@ -19,7 +19,11 @@
     const password = document.getElementById("password").value;
     const errorMsg = document.getElementById("error-message");
 
+<<<<<<< HEAD
     fetch('/webbomberos/auth/login', {
+=======
+    fetch('/auth/login', {
+>>>>>>> 036e5a7 (Removes JWT authentication implementation)
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

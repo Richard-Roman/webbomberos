@@ -342,6 +342,7 @@ h3 {
     height: 100%;
     overflow: auto;
     background-color: rgba(0,0,0,0.5);
+<<<<<<< HEAD
     padding: 0; /* Elimina cualquier padding */
 
 }
@@ -358,6 +359,17 @@ h3 {
     top: 0;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: auto; /* para que tenga scroll interno si se desborda */
+=======
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    position: relative;
+>>>>>>> 036e5a7 (Removes JWT authentication implementation)
 }
 
 .close {
@@ -375,6 +387,7 @@ h3 {
 }
 
 /*FORMUARIO DE MODAL*/
+<<<<<<< HEAD
 
 .titulo-formulario {
     color: #6b1212;
@@ -417,6 +430,12 @@ h3 {
     gap: 1.5rem;
     padding: 0rem;
     padding: 5px 5px;
+=======
+.formulario-usuario {
+    display: flex;
+    gap: 2rem;
+    padding: 1rem;
+>>>>>>> 036e5a7 (Removes JWT authentication implementation)
 }
 
 .imagen-usuario {
@@ -424,17 +443,28 @@ h3 {
     flex-direction: column;
     align-items: center;
     border-right: 2px solid #ccc;
+<<<<<<< HEAD
     padding: 20px 20px;
 
+=======
+    padding-right: 2rem;
+>>>>>>> 036e5a7 (Removes JWT authentication implementation)
 }
 
 .preview-imagen img {
     width: 150px;
+<<<<<<< HEAD
     height: 200px;
     border: 3px solid red;
     border-radius: 8px;
     object-fit: cover;
 
+=======
+    height: 150px;
+    border: 3px solid red;
+    border-radius: 8px;
+    object-fit: cover;
+>>>>>>> 036e5a7 (Removes JWT authentication implementation)
 }
 
 .botones-img button {
@@ -453,6 +483,7 @@ h3 {
     flex-direction: column;
 }
 
+<<<<<<< HEAD
 .campo {
     display: flex;
     align-items: center;  /* Alinea verticalmente el label y el input */
@@ -476,12 +507,22 @@ h3 {
 
 .campo select {
     flex-grow: 1; /* ← Esto hace que el input ocupe todo el espacio restante */
+=======
+.campos-usuario label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.campos-usuario input,
+.campos-usuario select {
+>>>>>>> 036e5a7 (Removes JWT authentication implementation)
     padding: 8px;
     margin-bottom: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
 }
 
+<<<<<<< HEAD
 /*Campo para roles*/
 .custom-dropdown {
     position: relative;
@@ -528,6 +569,8 @@ h3 {
 }
 
 
+=======
+>>>>>>> 036e5a7 (Removes JWT authentication implementation)
 .botones-formulario {
     display: flex;
     justify-content: center;
@@ -553,6 +596,7 @@ h3 {
     background-color: #e74c3c;
     color: white;
 }
+<<<<<<< HEAD
 
 
 
@@ -965,3 +1009,5 @@ h3 {
   
 
 
+=======
+>>>>>>> 036e5a7 (Removes JWT authentication implementation)

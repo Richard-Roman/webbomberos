@@ -57,7 +57,7 @@ public class AuthController {
             System.out.println("🍪 Cookie creada exitosamente");
             
             // 3. Redirigir a vista protegida
-            return "redirect:/intranet/main";
+            return "redirect:/webbomberos/intranet/main";
         } catch (BadCredentialsException | DisabledException | LockedException e) {
             redirectAttributes.addFlashAttribute("error", "Usuario o contraseña incorrectos");
             return "redirect:/auth/vlogin?error=1";
@@ -87,7 +87,7 @@ public class AuthController {
         }
         // 4. Redirigir con mensaje de éxito
         redirectAttributes.addFlashAttribute("message", "Sesión cerrada correctamente");
-        return "redirect:/webbomberos/auth/vlogin";
+        return "redirect:/auth/vlogin";
     }
 
 

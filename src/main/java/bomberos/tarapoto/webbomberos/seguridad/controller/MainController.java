@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/intranet")
+@RequestMapping("/webbomberos/intranet")
 public class MainController {
 
     @GetMapping(value = "main")

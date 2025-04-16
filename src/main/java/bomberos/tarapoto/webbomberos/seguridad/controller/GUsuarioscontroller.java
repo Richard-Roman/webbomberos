@@ -10,20 +10,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import bomberos.tarapoto.webbomberos.personal.model.Personal;
-import bomberos.tarapoto.webbomberos.personal.service.PersonalService;
 import bomberos.tarapoto.webbomberos.seguridad.model.RegisterUserRequest;
 import bomberos.tarapoto.webbomberos.seguridad.model.Usuarios;
-import bomberos.tarapoto.webbomberos.seguridad.model.Roles;
 import bomberos.tarapoto.webbomberos.seguridad.model.dao.IGUsuariosDAO;
 import bomberos.tarapoto.webbomberos.seguridad.model.dao.IRolesDAO;
 import lombok.RequiredArgsConstructor;
@@ -32,106 +26,61 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 //@RestController
 @Controller
-@RequestMapping("/intranet/Usuarios")
+@RequestMapping("/webbomberos/intranet/Usuarios")
 public class GUsuarioscontroller {
     @Autowired
     private IGUsuariosDAO usuariosDAO;
     @Autowired
-    private PersonalService personalService;
-    @Autowired
-    private IRolesDAO rolesDao;
+    private IRolesDAO rolesRepository;
     private final PasswordEncoder passwordEncoder;
 
  
     
     @GetMapping(value = "vusers")
     public String Usuarios(Model model) {
-        List<Roles> listaroles = rolesDao.findAll();
-        List<Usuarios> listauser  = usuariosDAO.findAllWithPersonal();  
-        model.addAttribute("listaroles", listaroles);
-        model.addAttribute("lista", listauser);
+        List<Usuarios> lista = usuariosDAO.findAll();
+        model.addAttribute("lista", lista);
         return "intranet/Usuarios/vusers";
     }
+
+    @GetMapping(value = "formusers")
+    public String fomularios(Model model) {
+        return "intranet/Usuarios/formusers";
+    }
     
-@PostMapping(value = "registraruser")
-public String registraruser(@ModelAttribute RegisterUserRequest usuario, RedirectAttributes redirectAttributes) {
-    Usuarios nuevousuario = Usuarios.builder()
-        .username(usuario.getUsername())
-        .password(passwordEncoder.encode(usuario.getPassword()))
-        .email(usuario.getEmail())
-        .roles(usuario.getRolEntities(rolesDao)) // Asigna roles desde el formulario
-        .isEnabled(usuario.getIsEnabled())
-        .accountNoLocked(usuario.getAccountNoLocked())
-        .accountNoExpired(true)
-        .credentialNoExpired(true)
-        .personal(personalService.obtenerPorId(usuario.getIdPersonal()).orElseThrow())
-        .build(); 
-    usuariosDAO.save(nuevousuario);
-    // Mensaje flash para usarlo si deseas mostrar en la vista
-    redirectAttributes.addFlashAttribute("mensaje", "Usuario registrado con éxito");
-    // Redirige a la vista lista de usuarios, por ejemplo
-    return "redirect:/intranet/Usuarios/vusers";
+    @PostMapping(value = "usuarios/ucreate")
+    public ResponseEntity<Usuarios> guardar(@RequestBody RegisterUserRequest usuario) {
+        Usuarios nuevousuario = Usuarios.builder()
+            .username(usuario.getUsername())
+            .password(passwordEncoder.encode(usuario.getPassword()))
+            .roles(usuario.getRolEntities(rolesRepository)) // <-- Aquí pasas el DAO
+            .build(); 
+        usuariosDAO.save(nuevousuario);
+        return ResponseEntity.ok(nuevousuario); // Retorna el usuario creado como JSON
     }
 
-    @GetMapping(value = "visualizaruser/{id}")
-    public String visualizaruser(@PathVariable Integer id, Model model) {
+    @GetMapping(value = "usuarios/ueditar/{id}")
+    public ResponseEntity<?> obtenerUsuarioPorId(@PathVariable Integer id) {
         Optional<Usuarios> usuarioid = usuariosDAO.findById(id);
-        Usuarios usuario = usuarioid.get();
-        Personal p = usuario.getPersonal();
-        List<Roles> listaroles = rolesDao.findAll();
-        model.addAttribute("usuario", usuario);   
-        model.addAttribute("p", p);
-        model.addAttribute("listaroles", listaroles);
-        model.addAttribute("modo", "visualizar"); 
-        return "intranet/Usuarios/formusers :: visualizarForm";
-    }
-
-    @GetMapping(value = "editaruser/{id}")
-    public String editaruser(@PathVariable Integer id, Model model) {
-        Optional<Usuarios> usuarioid = usuariosDAO.findById(id);
-        Usuarios usuario = usuarioid.get();
-        Personal p = usuario.getPersonal();
-        List<Roles> listaroles = rolesDao.findAll();
-        model.addAttribute("usuario", usuario);   
-        model.addAttribute("p", p);
-        model.addAttribute("listaroles", listaroles);
-        model.addAttribute("modo", "editar");
-        return "intranet/Usuarios/formusers :: editarForm";
-    }
-
-    @PostMapping("editaruser/{id}")
-    public String actualizarUser(
-            @PathVariable Integer id,
-            @ModelAttribute RegisterUserRequest usuario,
-            RedirectAttributes redirectAttributes) {
-    
-        Optional<Usuarios> opt = usuariosDAO.findById(id);
-        if (!opt.isPresent()) {
-            // Usuario no existe: volvemos al listado con mensaje de error
-            redirectAttributes.addFlashAttribute("error", "Usuario no encontrado");
-            return "redirect:/intranet/Usuarios/vusers";
+        if (usuarioid.isPresent()) {
+            return ResponseEntity.ok(usuarioid.get()); // Retorna el usuario en formato JSON
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado");
         }
-        // Tomamos la entidad existente y modificamos sus campos
-        Usuarios existente = opt.get();
-        existente.setUsername(usuario.getUsername());
-        existente.setEmail(usuario.getEmail());
-        existente.setRoles(usuario.getRolEntities(rolesDao));
-        existente.setIsEnabled(usuario.getIsEnabled());
-        existente.setAccountNoLocked(usuario.getAccountNoLocked());
-        existente.setAccountNoExpired(true);
-        existente.setCredentialNoExpired(true);
+    }
 
-        if (usuario.getPassword() != null && !usuario.getPassword().trim().isEmpty()) {
-            existente.setPassword(passwordEncoder.encode(usuario.getPassword()));
+    @PutMapping("/intranet/Usuarios/vuupdate/{id}")
+    public ResponseEntity<?> actualizar(@PathVariable Integer id, @RequestBody Usuarios usuario) {
+        Optional<Usuarios> usuarioExistente = usuariosDAO.findById(id);
+    
+        if (!usuarioExistente.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado");
         }
     
-        usuariosDAO.save(existente);
-    
-        redirectAttributes.addFlashAttribute("mensaje", "Usuario actualizado con éxito");
-        return "redirect:/intranet/Usuarios/vusers";
+        usuario.setId_Usuario(id); // Asegurar que el usuario tenga el mismo ID
+        Usuarios usuarioActualizado = usuariosDAO.save(usuario);
+        return ResponseEntity.ok(usuarioActualizado);
     }
-    
-    
 
 
     @DeleteMapping("/intranet/Usuarios/ueliminar/{id}")
@@ -142,18 +91,6 @@ public String registraruser(@ModelAttribute RegisterUserRequest usuario, Redirec
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado");
         }
-    }
-
-    @GetMapping(value = "/buscarPersonal")
-    public String buscarPersonal(@RequestParam String dni, RedirectAttributes redirectAttributes, Model model) {
-        Optional<Personal> personal = personalService.buscarPorDni(dni);
-        if (personal.isEmpty()) {
-            redirectAttributes.addFlashAttribute("error", "Usuario no encontrado");
-            return "redirect:/webbomberos/intranet/Usuarios/vusers";        }
-        Personal p = personal.get();
-        System.out.println(p);
-        model.addAttribute("p", p);   
-        return "intranet/Usuarios/formusers :: datosPersonal";
     }
 
 }

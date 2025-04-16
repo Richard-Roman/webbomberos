@@ -49,20 +49,9 @@ public class SecurityConfig {
                 authRequest.requestMatchers("/webbomberos/intranet/main").authenticated();
                 authRequest.requestMatchers("/webbomberos/intranet/perfil").hasAnyRole("USER");
                 authRequest.requestMatchers("/webbomberos/intranet/Usuarios/vusers").hasAnyRole("ADMIN", "DEVELOPER");
-                authRequest.requestMatchers("/webbomberos/intranet/Usuarios/registraruser").hasAnyRole("ADMIN", "DEVELOPER");
-                authRequest.requestMatchers("/webbomberos/intranet/Usuarios/visualizaruser/{id}").hasAnyRole("ADMIN", "DEVELOPER");
-                authRequest.requestMatchers("/webbomberos/intranet/Usuarios/editaruser/{id}").hasAnyRole("ADMIN", "DEVELOPER");
                 authRequest.requestMatchers("/webbomberos/intranet/Usuarios/formusers").hasAnyRole("ADMIN", "DEVELOPER");
-                authRequest.requestMatchers("/webbomberos/intranet/Usuarios/buscarPersonal").hasAnyRole("ADMIN", "DEVELOPER");
+                authRequest.requestMatchers("/webbomberos/intranet/Usuarios/ueditar/{id}").hasAnyRole("ADMIN", "DEVELOPER");
 
-
-
-                
-                //Modulo Personal
-                authRequest.requestMatchers("/intranet/personal/listar").hasAnyRole("ADMIN", "DEVELOPER");
-
-                //Modulo Inventario
-                authRequest.requestMatchers("/intranet/inventario/prueba").hasAnyRole("ADMIN", "DEVELOPER");
                 
                 // Configurar el resto de endpoint - NO ESPECIFICADOS
                 authRequest.anyRequest().denyAll();

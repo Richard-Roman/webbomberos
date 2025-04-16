@@ -19,11 +19,7 @@ public class RegisterUserRequest {
 
     private String username;
     private String password;
-    private String email;
-    private Boolean isEnabled;
-    private Boolean accountNoLocked;
     private List<String> roles;
-    private Integer idPersonal;
 
 public Set<Roles> getRolEntities(IRolesDAO rolesRepository) {
     Set<RoleEnum> roleEnums = roles.stream()
