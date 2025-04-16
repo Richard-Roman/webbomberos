@@ -1,0 +1,107 @@
+.contenido-principal {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.contenido {
+    padding: 2rem;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.barra-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.btn-asignar {
+    background-color: #11C743;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.2rem;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.4rem;
+}
+
+#buscar {
+    width: 300px;
+    padding: 0.7rem;
+    font-size: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.tabla-usuarios table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 5px;
+    font-size: 1.5rem;
+}
+
+.tabla-usuarios th, .tabla-usuarios td {
+    padding: 0.01rem;
+    text-align: center;
+    background-color: #ffc2c2;
+    border-radius: 15px;
+}
+
+.tabla-usuarios th {
+    background-color: #ff9999;
+    font-weight: bold;
+}
+
+.activo {
+    color: green;
+    font-weight: bold;
+}
+
+.acciones-contenedor {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+.accion {
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1%;
+    cursor: pointer;
+    
+}
+.accion {
+    padding: 0.01rem 0.01rem;
+    background: none;
+    border: none;
+    width: 10px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1%;
+    cursor: pointer;
+    
+}
+
+.accion:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+
+}
+
+.accion img {
+    height: 20px;
+    width: 20px;
+}

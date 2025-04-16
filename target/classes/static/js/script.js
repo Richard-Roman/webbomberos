@@ -19,7 +19,7 @@
     const password = document.getElementById("password").value;
     const errorMsg = document.getElementById("error-message");
 
-    fetch('/auth/login2', {
+    fetch('/auth/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -37,11 +37,6 @@
         }
     })
     .then(data => {
-        console.log('Login exitoso:', data);
-        // Aquí puedes guardar el token que devuelve tu backend
-        //localStorage.setItem('token', data.token); // Suponiendo que devuelve un campo llamado 'token'
-
-        // Redirigir a la página principal o dashboard
         window.location.href = '/webbomberos/intranet/main.html';
     })
     .catch(error => {
@@ -51,7 +46,12 @@
 
     return false; // Para que el form no recargue la página
 }
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get("error") === "1") {
+    document.getElementById("error-message").classList.remove("hidden");
+}
 
+/*
   // Detectar si hay error en la URL (?error=1)
   const urlParams = new URLSearchParams(window.location.search);
   if (urlParams.get("error") === "1") {
@@ -60,18 +60,4 @@
       <p class="instruccion">Por favor intente nuevamente</p>
     `;
   }
-
-  function logout() {
-    fetch('/auth/logout', {
-        method: 'GET',
-    })
-    .then(response => {
-        if (response.redirected) {
-            // Si el backend hace un redirect, seguimos esa URL
-            window.location.href = response.url;
-        }
-    })
-    .catch(error => {
-        console.error('Error al cerrar sesión:', error);
-    });
-}
+*/
