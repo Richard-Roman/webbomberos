@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/stylesmain.css}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900">
+    <title>Bomberos Tarapoto</title>
+</head>
+
+<body>
+    <div class="container">
+        <span th:replace="~{includes/sidebar :: .sidebar}"></span>
+
+        <div class="content">
+            <div class="cabeza">
+                <h2>INICIO</h2>
+        
+                <div class="perfil">
+                    <p class="bomb">LANCHA TU MARE</p>
+                    <img class="foto" src="/img/perfil.png" alt="" height="65px">
+                    <p class="uwu">uw</p>
+                    <img src="/img/salida.png" alt="" height="35px" onclick="logout()" style="cursor: pointer;">
+                </div>
+        
+            </div>
+            
+            <div class="ini">
+                <div class="eya">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script th:inline="javascript">
+        const username = /*[[${username}]]*/ "Usuario";
+        const roles = /*[[${roles}]]*/ [];
+        console.log("Datos de usuario:");
+        console.log("Username:", username);
+        console.log("Roles:", roles);
+    </script>
+    <script src="/js/main.js"></script> 
+</body>
+</html>
