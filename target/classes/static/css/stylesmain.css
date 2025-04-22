@@ -1,0 +1,556 @@
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.6rem;
+    width: 100%;
+    line-height: 2;
+    background-color: #ECECEC;
+    margin: 0;
+    position: absolute;
+}
+
+.container{
+    display: flex;
+}
+
+.sidebar{
+    background-color: #C80D16;
+    width: 320px;
+    max-height: 100%;
+}
+
+.logo{
+    display: flex;
+    justify-content: center;
+    padding: 10%;
+}
+
+.opciones{
+    display: block;
+    text-align: center;
+    color: rgb(230, 230, 230);
+    margin-top: 7.5%;
+    width: 100%;
+}
+
+.home, 
+.dropdown{
+    align-items: center;
+    margin-top: 0;
+    cursor: pointer;
+    padding-left: 15%;
+}
+
+.opciones .dropdown,
+.opciones .home {
+  margin-bottom: 10px;
+}
+
+.home:hover, 
+.dropdown:hover{
+    background-color: #c95258;
+    border-radius: 2.5%;
+}
+
+.home1, .inven, .perso, .emerg, .dona, .acti, .segu{
+    display: flex;
+    color: #ffffff;
+    text-decoration: none;
+    align-items: center;
+}
+
+.home1 p, .inven p, .perso p, .emerg p, .dona p, .acti p, .segu p{
+    display: flex;
+    margin-left: 15%;
+}
+
+.dropdown{
+    list-style: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dropdown a{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.dropdown a:hover{
+    color: #321e1e;
+}
+
+.submenu{
+    display: none;
+    opacity: 0.9;
+    padding-bottom: 10px;
+}
+
+.sidebar .opciones .dropdown .submenu.active{
+    display: block;
+}
+
+.content{
+    position: relative;
+    width: 100%;
+}
+
+.cabeza {
+    display: flex;
+    justify-content: space-between;
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 100%;
+    align-items: center;
+    padding-left: 5%;
+    padding-right: 3%;
+    border: 10px #000000;
+}
+
+.perfil{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.uwu{
+    color: #ffffff;
+}
+
+.foto{
+    border-radius: 50%;
+}
+
+.bomb {
+    display: flex;
+    width: auto;
+    max-width: 100px;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.2;
+}
+
+
+
+
+
+
+
+
+
+
+.contenido-principal {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.contenido {
+    padding: 2rem;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.barra-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1rem;
+    padding-right: 3rem;
+}
+
+.btn-asignar {
+    background-color: #1ac943;
+    color: white;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.buscar-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.buscar-section h3 {
+    margin: 0 0 5px 0;
+}
+
+.input-container {
+    position: relative;
+}
+
+.input-container input {
+    padding: 8px 30px 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.icono-buscar {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+#buscar {
+    width: 300px;
+    padding: 0.7rem;
+    font-size: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.encabezado-lista {
+    background-color: #e5e5e5;
+    padding: 0.2rem 0.5rem;
+    padding-top: 30px;     /* Reduce espacio arriba */
+    padding-bottom: 5px;
+}
+
+.titulo-paginacion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 4rem;
+
+}
+
+.paginacion {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+}
+
+.pagina-actual {
+    font-size: 1.6rem; /* más grande */
+    font-weight: bold;
+    gap: 0.5rem;
+}
+.flecha {
+    font-size: 2rem; /* o el tamaño que quieras */
+    font-weight: bold; /* opcional, para hacerlo más grueso */
+}
+
+h3 {
+    margin: 0; /* quita el espacio abajo del título */
+}
+
+.separador {
+    border: none;
+    border-top: 1px solid #000;
+    padding-top: 0px;     /* Reduce espacio arriba */
+    padding-bottom: 20px;
+}
+
+.tabla-usuarios table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 5px;
+    font-size: 1.5rem;
+}
+
+.tabla-usuarios th, .tabla-usuarios td {
+    padding: 0.01rem;
+    text-align: center;
+    background-color: #ffc2c2;
+    border-radius: 15px;
+}
+
+.tabla-usuarios th {
+    background-color: #ff9999;
+    font-weight: bold;
+}
+
+.activo {
+    color: green;
+    font-weight: bold;
+}
+
+.acciones-contenedor {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+.accion {
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1%;
+    cursor: pointer;
+    
+}
+.accion {
+    padding: 0.01rem 0.01rem;
+    background: none;
+    border: none;
+    width: 10px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1%;
+    cursor: pointer;
+    
+}
+
+.accion:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+
+}
+
+.accion img {
+    height: 20px;
+    width: 20px;
+}
+
+
+/*Modales*/
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+    padding: 0; /* Elimina cualquier padding */
+
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    margin: 1% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    height: 96%;
+    left: 0;
+    top: 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: auto; /* para que tenga scroll interno si se desborda */
+}
+
+.close {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: red;
+}
+
+/*FORMUARIO DE MODAL*/
+
+.titulo-formulario {
+    color: #6b1212;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+.divisor-title{
+    opacity: 0.5;
+    background-color: #020202; /* Color de la línea */
+}
+
+.titulo-seccion {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+
+.titulo-seccion h4 {
+    margin: 0;
+    padding: 0;
+    color: #030303; /* Color del texto */
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1; /* <- Esto ayuda a reducir espacio vertical */
+
+}
+
+.titulo-seccion .divisor {
+    width: 100%;
+    height: 1px;
+    background-color: #201e1e; /* Color de la línea */
+    border: none;
+    height: 1px; /* ← Aumenta el grosor aquí */
+    margin: 0; /* Espacio entre título y línea */
+}
+
+.formulario-usuario {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0rem;
+    padding: 5px 5px;
+}
+
+.imagen-usuario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: 2px solid #ccc;
+    padding: 30px 30px;
+
+}
+
+.preview-imagen img {
+    width: 250px;
+    height: 300px;
+    border: 3px solid red;
+    border-radius: 8px;
+    object-fit: cover;
+
+}
+
+.botones-img button {
+    margin: 5px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.campos-usuario {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.campo {
+    display: flex;
+    align-items: center;  /* Alinea verticalmente el label y el input */
+    gap: 10px;             /* Espacio horizontal entre label e input */
+    margin-bottom: 8px;    /* Espacio vertical entre cada grupo */
+    border-radius: 10px;
+}
+
+.campo label {
+    width: 80px;
+    margin-top: 1px;
+    font-weight: bold;
+}
+.campo input{
+    flex-grow: 1; /* ← Esto hace que el input ocupe todo el espacio restante */
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.campo select {
+    flex-grow: 1; /* ← Esto hace que el input ocupe todo el espacio restante */
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/*Campo para roles*/
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+    width: 82%;
+}
+
+.dropdown-btn {
+    width: 100%;
+    padding: 3px;
+    border: 1px solid #ccc;
+    background-color: white;
+    cursor: pointer;
+    text-align: left;
+    border-radius: 8px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    
+}
+
+.dropdown-content label {
+    display: flex;              /* Pone checkbox y texto en una fila */
+    align-items: center;        /* Centra verticalmente */
+    padding: 0px 20px;
+    cursor: pointer;
+    gap: 8px;    
+}
+
+.dropdown-content label:hover {
+    background-color: #f0f0f0;
+}
+
+.show {
+    display: block;
+}
+
+
+.botones-formulario {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.btn-guardar,
+.btn-cancelar {
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-guardar {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn-cancelar {
+    background-color: #e74c3c;
+    color: white;
+}
+

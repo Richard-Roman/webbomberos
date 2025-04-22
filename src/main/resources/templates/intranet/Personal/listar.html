@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Personal</title>
+    <link rel="stylesheet" th:href="@{/css/stylesmain.css}">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+20&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+</head>
+
+<body>
+
+    <!-- Siderbar -->
+
+    <div class="container">
+        <span th:replace="~{includes/sidebar :: .sidebar}"></span>
+
+        <!-- Modales -->
+        <div class="modal" id="modalRegistrar" style="display: none;">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modalRegistrar')">&times;</span>
+                <div th:replace="~{intranet/Usuarios/formusers :: registrarForm}"></div>
+            </div>
+        </div>
+        <div class="modal" id="modalVisualizar" style="display: none;">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modalVisualizar')">&times;</span>
+            </div>
+        </div>
+        <div class="modal" id="modalEditar" style="display: none;">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modalEditar')">&times;</span>
+            </div>
+        </div>
+
+    <!-- Tabla -->
+        <div class="content">
+            <div class="cabeza">
+                <h2>INICIO</h2>
+        
+                <div class="perfil">
+                    <p class="bomb">Kent Miranda</p>
+                    <img class="foto" th:src="@{/img/perfil.png}" alt="" height="65px">
+                    <p class="uwu">uw</p>
+                    <img th:src="@{/img/salida.png}" alt="" height="35px" onclick="logout()" style="cursor: pointer;">
+                </div>
+            </div>
+            <div class="contenido">
+                <div class="barra-superior">
+                    <div class="buscar-section">
+                        <h3>Buscar</h3>
+                        <div class="input-container">
+                            <input type="text" id="buscar" placeholder="Search...">
+                            <span class="icono-buscar">🔍</span>
+                        </div>
+                    </div>
+                    <button id="FormRegist"  class="btn-asignar">+ Asignar Nuevo</button>
+                </div>
+
+                <div class="tabla-usuarios">
+                    <div class="encabezado-lista">
+                        <div class="titulo-paginacion">
+                            <h3>Lista de Usuarios</h3>
+                            <div class="paginacion">
+                                <span class="flecha">&lt;</span>
+                                <span class="pagina-actual">1 de 1</span> 
+                                <span class="flecha">&gt;</span>
+                            </div>
+                        </div>
+                        <hr class="separador">
+                    </div>
+    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>DNI</th>
+                                <th>Nombre Completo</th>
+                                <th>Código de Bombero</th>
+                                <th>Grado</th>
+                                <th>Cargo</th>
+                                <th>Estado</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="p : ${listaPersonal}">
+                                <td th:text="${p.dni}"></td>
+                                <td th:text="|${p.nombres} ${p.apellidos}|"></td>
+                                <td th:text="${p.codigoBombero}"></td>
+                                <td th:text="${p.grado}"></td>
+                                <td th:text="${p.cargo}"></td>
+                                <td th:text="${p.estado}"></td>
+                                <td>
+                                    <div class="acciones-contenedor">
+                                        <a  class="accion">
+                                            <img th:src="@{/img/ver.png}" alt="Ver">
+                                        </a>                                        
+                                        <a  class="accion">
+                                            <img th:src="@{/img/editar.png}" alt="Editar">
+                                        </a>                                       
+                                         <button class="accion">
+                                            <img th:src="@{/img/desactivar.png}" alt="Eliminar"></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Más filas aquí -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script th:src="@{/js/userregistros.js}"></script> 
+    <script th:if="${usuario != null}">
+        document.addEventListener('DOMContentLoaded', function() {
+            const modo = /*[[${modo}]]*/ 'editar';
+            switch(modo) {
+                case 'visualizar':
+                    openModal('modalVisualizar');
+                    break;
+                case 'editar':
+                    openModal('modalEditar');
+                    break;
+                default:
+                    console.warn('Modo no reconocido:', modo);
+            }
+        });
+    </script>
+</body>
+
+</html>
