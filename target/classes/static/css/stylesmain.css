@@ -26,7 +26,8 @@ body {
 .sidebar{
     background-color: #C80D16;
     width: 320px;
-    max-height: 100%;
+    align-content: center;
+    min-height: 100vh;
 }
 
 .logo{
