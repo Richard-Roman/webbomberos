@@ -6,5 +6,7 @@ Sistema de gestion administrativa para una compania de bomberos
 Estoy usando la version 23.
 
 username=root
+
 password=1234
+
 para la base de datos
