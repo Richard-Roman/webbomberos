@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import bomberos.tarapoto.webbomberos.personal.model.Estudio;
 
 public interface IEstudioDAO extends JpaRepository<Estudio, Integer> {
-    List<Estudio> findByPersonalIdPersonalAndDesactivado(Integer idPersonal, String desactivado);
+    List<Estudio> findByPersonalIdPersonalAndRegistroActivo(Integer idPersonal, String registroActivo);
 }

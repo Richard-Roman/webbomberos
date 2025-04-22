@@ -14,7 +14,7 @@ import bomberos.tarapoto.webbomberos.personal.service.EstudioService;
 import bomberos.tarapoto.webbomberos.personal.service.PersonalService;
 
 @Controller
-@RequestMapping("/personal/estudio")
+@RequestMapping("intranet/personal/estudio")
 public class EstudioController {
 
     @Autowired
@@ -109,7 +109,7 @@ public class EstudioController {
         estudio.setDesactivado("0");
         estudioService.guardar(estudio);
 
-        return "redirect:/personal/estudio";
+        return "redirect:/intranet/personal/estudio";
     }
 
     // Eliminar estudio (lógico, si configuras la entidad correctamente)
@@ -121,6 +121,6 @@ public class EstudioController {
             estudio.setDesactivado("1");
             estudioService.guardar(estudio); // borrado lógico
         }
-        return "redirect:/personal/estudio";
+        return "redirect:/intranet/personal/estudio";
     }
 }

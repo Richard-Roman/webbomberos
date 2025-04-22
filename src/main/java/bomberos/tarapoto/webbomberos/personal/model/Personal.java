@@ -18,7 +18,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "personal")
-@SQLDelete(sql = "UPDATE personal SET desactivado = '1' WHERE id_personal = ?")
+@SQLDelete(sql = "UPDATE personal SET desactivado = '1' WHERE idPersonal = ?")
 @Where(clause = "desactivado = '0'")
 
 public class Personal {

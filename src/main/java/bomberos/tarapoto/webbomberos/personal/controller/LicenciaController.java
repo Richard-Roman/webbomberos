@@ -108,14 +108,14 @@ public class LicenciaController {
             licenciaService.guardar(licencia);
         }
 
-        return "redirect:/personal/estado";
+        return "redirect:/intranet/personal/estado";
     }
 
     // Eliminar (borrado lógico)
     @GetMapping("/eliminar/{idLicencia}")
     public String eliminarLicencia(@PathVariable Integer idLicencia) {
         licenciaService.desactivarLicencia(idLicencia);
-        return "redirect:/personal/estado";
+        return "redirect:/intranet/personal/estado";
     }
 
 }

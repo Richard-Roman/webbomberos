@@ -17,7 +17,7 @@ import bomberos.tarapoto.webbomberos.personal.dao.IPersonalDAO;
 import bomberos.tarapoto.webbomberos.personal.service.PersonalService;
 
 @Controller
-@RequestMapping("/webbomberos/intranet/Personal")
+@RequestMapping("/intranet/personal")
 public class PersonalController {
 
     @Autowired
@@ -45,7 +45,7 @@ public class PersonalController {
             model.addAttribute("personal", personal.get());
             return "bombero/formulario";
         }
-        return "redirect:/personal/bombero";
+        return "redirect:/intranet/personal/bombero";
     }
 
     @PostMapping("/guardar")
@@ -82,12 +82,12 @@ public class PersonalController {
         }
 
         personalService.guardar(personal);
-        return "redirect:/personal/bombero";
+        return "redirect:/intranet/personal/bombero";
     }
 
     @GetMapping("/eliminar/{id}")
     public String eliminar(@PathVariable Integer id) {
         personalService.eliminar(id);
-        return "redirect:/personal/bombero";
+        return "redirect:/intranet/personal/bombero";
     }
 }
