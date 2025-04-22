@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-WebbomberosApplication<webbomberos>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "bomberos.tarapoto.webbomberos.WebbomberosApplication",
+            "projectName": "webbomberos",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
