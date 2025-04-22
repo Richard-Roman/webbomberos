@@ -26,7 +26,7 @@ import bomberos.tarapoto.webbomberos.personal.service.AsistenciaRegistroService;
 import bomberos.tarapoto.webbomberos.personal.service.PersonalService;
 
 @Controller
-@RequestMapping("/asistencia")
+@RequestMapping("/intranet/personal/asistencia")
 public class AsistenciaController {
 
     @Autowired
@@ -95,7 +95,7 @@ public class AsistenciaController {
                 }
             }
 
-            return "redirect:/asistencia";
+            return "redirect:/intranet/personal/asistencia";
         } catch (DateTimeParseException e) {
             result.rejectValue("horaInicio", "formato.hora.invalido", "Formato de hora inválido (HH:mm)");
             return "asistencia/nuevo-registro";
@@ -131,7 +131,7 @@ public class AsistenciaController {
             return "asistencia/nuevo-registro";
         }
 
-        return "redirect:/asistencia";
+        return "redirect:/intranet/personal/asistencia";
     }
 
     // Eliminar (desactivar) registro
@@ -153,7 +153,7 @@ public class AsistenciaController {
             registroService.guardar(registro);
         }
 
-        return "redirect:/asistencia";
+        return "redirect:/intranet/personal/asistencia";
     }
 
     // Marcar asistencia de un bombero
@@ -189,7 +189,7 @@ public class AsistenciaController {
             }
         }
 
-        return "redirect:/asistencia/registro/" + idRegistro;
+        return "redirect:/intranet/personal/asistencia/registro/" + idRegistro;
     }
 
     // Marcar salida de un bombero
@@ -206,7 +206,7 @@ public class AsistenciaController {
             detalleService.guardar(detalle);
         }
 
-        return "redirect:/asistencia/registro/" + idRegistro;
+        return "redirect:/intranet/personal/asistencia/registro/" + idRegistro;
     }
 
     // Ver detalles de un registro específico
@@ -230,7 +230,7 @@ public class AsistenciaController {
             return "asistencia/detalle";
         }
 
-        return "redirect:/asistencia";
+        return "redirect:/intranet/personal/asistencia";
     }
 
     // Cerrar un registro manualmente
@@ -244,6 +244,6 @@ public class AsistenciaController {
             registroService.guardar(registro);
         }
 
-        return "redirect:/asistencia/registro/" + id;
+        return "redirect:/intranet/personal/asistencia/registro/" + id;
     }
 }

@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Iniciar Sesión - Bomberos Tarapoto 71</title>
-  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
   <div class="login-container">
     <div class="logo-header">
-      <img src="/img/logobomberos.jpg" alt="Logo Bomberos" class="logo">
+      <img th:src="@{/img/logobomberos.jpg}" alt="Logo Bomberos" class="logo">
       <div>
         <p class="header-title">Bomberos Tarapoto 71</p>
         <p class="header-subtitle">Cap. CBP Juan Roberto Acevedo</p>
@@ -19,7 +19,7 @@
     
     <div class="login-box">
       <h2>Iniciar Sesión</h2>
-      <form id="loginForm"method="post" action="/auth/login">
+      <form id="loginForm"method="post" action="/webbomberos/auth/login">
 
           <label for="username">Usuario</label>
             <input type="text" id="username" name="username" required>
@@ -41,6 +41,6 @@
     </div>
   </div>
 
-  <script src="/js/script.js"></script> 
+  <script th:src="@{/js/script.js}"></script>
 </body>
 </html>

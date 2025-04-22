@@ -29,7 +29,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 //@RestController
 @Controller
-@RequestMapping("/webbomberos/intranet/Usuarios")
+@RequestMapping("/intranet/Usuarios")
 public class GUsuarioscontroller {
     @Autowired
     private IGUsuariosDAO usuariosDAO;
@@ -64,7 +64,7 @@ public String registraruser(@ModelAttribute RegisterUserRequest usuario, Redirec
     // Mensaje flash para usarlo si deseas mostrar en la vista
     redirectAttributes.addFlashAttribute("mensaje", "Usuario registrado con éxito");
     // Redirige a la vista lista de usuarios, por ejemplo
-    return "redirect:/webbomberos/intranet/Usuarios/vusers";
+    return "redirect:/intranet/Usuarios/vusers";
     }
 
     @GetMapping(value = "visualizaruser/{id}")
@@ -99,7 +99,7 @@ public String registraruser(@ModelAttribute RegisterUserRequest usuario, Redirec
         if (!opt.isPresent()) {
             // Usuario no existe: volvemos al listado con mensaje de error
             redirectAttributes.addFlashAttribute("error", "Usuario no encontrado");
-            return "redirect:/webbomberos/intranet/Usuarios/vusers";
+            return "redirect:/intranet/Usuarios/vusers";
         }
         // Tomamos la entidad existente y modificamos sus campos
         Usuarios existente = opt.get();
@@ -118,7 +118,7 @@ public String registraruser(@ModelAttribute RegisterUserRequest usuario, Redirec
         usuariosDAO.save(existente);
     
         redirectAttributes.addFlashAttribute("mensaje", "Usuario actualizado con éxito");
-        return "redirect:/webbomberos/intranet/Usuarios/vusers";
+        return "redirect:/intranet/Usuarios/vusers";
     }
     
     
