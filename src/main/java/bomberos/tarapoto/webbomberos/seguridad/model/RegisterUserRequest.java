@@ -23,7 +23,7 @@ public class RegisterUserRequest {
     private Boolean isEnabled;
     private Boolean accountNoLocked;
     private List<String> roles;
-    private Integer id_usuarios;
+    private Integer idPersonal;
 
 public Set<Roles> getRolEntities(IRolesDAO rolesRepository) {
     Set<RoleEnum> roleEnums = roles.stream()

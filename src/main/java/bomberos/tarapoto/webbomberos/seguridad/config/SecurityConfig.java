@@ -53,6 +53,9 @@ public class SecurityConfig {
                 authRequest.requestMatchers("/webbomberos/intranet/Usuarios/visualizaruser/{id}").hasAnyRole("ADMIN", "DEVELOPER");
                 authRequest.requestMatchers("/webbomberos/intranet/Usuarios/editaruser/{id}").hasAnyRole("ADMIN", "DEVELOPER");
                 authRequest.requestMatchers("/webbomberos/intranet/Usuarios/formusers").hasAnyRole("ADMIN", "DEVELOPER");
+                authRequest.requestMatchers("/webbomberos/intranet/Usuarios/buscarPersonal").hasAnyRole("ADMIN", "DEVELOPER");
+
+
                 
                 //Modulo Personal
                 authRequest.requestMatchers("/webbomberos/intranet/Personal/listar").hasAnyRole("ADMIN", "DEVELOPER");

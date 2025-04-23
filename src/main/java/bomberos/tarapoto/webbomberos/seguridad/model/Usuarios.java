@@ -4,6 +4,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import bomberos.tarapoto.webbomberos.personal.model.Personal;
+
 import java.util.Collection;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -16,6 +18,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.Table;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
+
 import java.util.HashSet;
 import java.util.Set;
 import lombok.AllArgsConstructor;
@@ -48,8 +52,10 @@ public class Usuarios implements UserDetails{
     private String email;
 
     //Cambiar a realcio onetoone con personal
-    @Column(name = "id_personal")
-    private Integer id_personal;
+    // -- Relación con Personal --
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_personal", referencedColumnName = "idPersonal")
+    private Personal personal;
 
     @Column(name = "is_Enabled")
     private Boolean isEnabled;
