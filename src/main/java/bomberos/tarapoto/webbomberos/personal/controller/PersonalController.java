@@ -35,7 +35,7 @@ public class PersonalController {
     @GetMapping("/nuevo")
     public String nuevo(Model model) {
         model.addAttribute("personal", new Personal());
-        return "bombero/formulario";
+        return "intranet/Personal/bombero/formulario";
     }
 
     @GetMapping("/editar/{id}")
@@ -58,7 +58,7 @@ public class PersonalController {
         if (!dniValido) {
             model.addAttribute("error", "El DNI ya está en uso por otro registro activo.");
             model.addAttribute("personal", personal);
-            return "bombero/formulario";
+            return "intranet/Personal/bombero/formulario";
         }
 
         if (!esNuevo) {

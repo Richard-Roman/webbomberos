@@ -43,7 +43,7 @@ public class AsistenciaController {
     public String index(Model model) {
         List<AsistenciaRegistro> registros = registroService.listarTodos();
         model.addAttribute("registros", registros);
-        return "asistencia/index";
+        return "intranet/Personal/asistencia/index";
     }
 
     // Mostrar formulario para nuevo registro
@@ -52,7 +52,7 @@ public class AsistenciaController {
         AsistenciaRegistro registro = new AsistenciaRegistro();
         registro.setFecha(LocalDate.now());
         model.addAttribute("registro", registro);
-        return "asistencia/nuevo-registro";
+        return "intranet/Personal/asistencia/nuevo-registro";
     }
 
     @PostMapping("/guardar-registro")
@@ -66,7 +66,7 @@ public class AsistenciaController {
 
         if (registro.getFecha() == null) {
             result.rejectValue("fecha", "fecha.requerida", "La fecha es requerida");
-            return "asistencia/nuevo-registro";
+            return "intranet/Personal/asistencia/nuevo-registro";
         }
 
         try {
@@ -98,7 +98,7 @@ public class AsistenciaController {
             return "redirect:/intranet/personal/asistencia";
         } catch (DateTimeParseException e) {
             result.rejectValue("horaInicio", "formato.hora.invalido", "Formato de hora inválido (HH:mm)");
-            return "asistencia/nuevo-registro";
+            return "intranet/Personal/asistencia/nuevo-registro";
         }
     }
 
@@ -128,7 +128,7 @@ public class AsistenciaController {
             model.addAttribute("horaFinForm",
                     registro.getHoraFin() != null ? registro.getHoraFin().toLocalTime().toString() : "");
 
-            return "asistencia/nuevo-registro";
+            return "intranet/Personal/asistencia/nuevo-registro";
         }
 
         return "redirect:/intranet/personal/asistencia";
@@ -227,7 +227,7 @@ public class AsistenciaController {
             model.addAttribute("registro", registro);
             model.addAttribute("detalles", detalles);
             model.addAttribute("bomberos", personalService.listarTodos());
-            return "asistencia/detalle";
+            return "Personal/asistencia/detalle";
         }
 
         return "redirect:/intranet/personal/asistencia";

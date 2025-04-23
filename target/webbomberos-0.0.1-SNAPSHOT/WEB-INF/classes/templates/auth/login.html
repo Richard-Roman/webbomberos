@@ -9,7 +9,7 @@
 <body>
   <div class="login-container">
     <div class="logo-header">
-      <img src="/img/logobomberos.jpg" alt="Logo Bomberos" class="logo">
+      <img th:src="@{/img/logobomberos.jpg}" alt="Logo Bomberos" class="logo">
       <div>
         <p class="header-title">Bomberos Tarapoto 71</p>
         <p class="header-subtitle">Cap. CBP Juan Roberto Acevedo</p>
@@ -41,6 +41,6 @@
     </div>
   </div>
 
-  <script src="/js/script.js"></script> 
+  <script th:src="@{/js/script.js}"></script>
 </body>
 </html>

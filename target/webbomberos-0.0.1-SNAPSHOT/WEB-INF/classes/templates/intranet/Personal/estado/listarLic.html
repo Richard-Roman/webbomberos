@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Listado de Licencias</title>
+</head>
+
+<body>
+
+    <h1>Bomberos con Licencias o Suspensiones</h1>
+
+    <a th:href="@{/personal/estado/editar}" class="btn btn-primary">Registrar Licencia o Suspensión</a>
+
+    <table border="1" cellpadding="5" cellspacing="0">
+        <thead>
+            <tr>
+                <th>DNI</th>
+                <th>Nombre</th>
+                <th>Estado</th>
+                <th>Tipo de Licencia</th>
+                <th>Descripción</th>
+                <th>Documento</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Fin</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="bombero : ${bomberos}" th:if="${bombero != null}">
+                <td th:text="${bombero.dni}">DNI</td>
+                <td th:text="${bombero.nombres + ' ' + bombero.apellidos}">Nombre</td>
+                <td th:text="${bombero.estado}">Estado</td>
+                <td colspan="6">
+                    <table border="1" width="100%">
+                        <tr th:each="licencia : ${bombero.licencias}">
+                            <td th:text="${licencia.tipo}">Tipo</td>
+                            <td th:text="${licencia.descripcion}">Descripción</td>
+                            <td th:text="${licencia.nombreDocumento}">Documento</td>
+                            <td th:text="${licencia.fechaInicio}">Inicio</td>
+                            <td th:text="${licencia.fechaFin}">Fin</td>
+                            <td>
+                                <a th:href="@{/personal/estado/editar(dni=${bombero.dni})}">Editar</a> |
+                                <a th:href="@{/personal/estado/eliminar/{id}(id=${licencia.idLicencia})}">Eliminar</a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+
+</html>

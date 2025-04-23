@@ -19,7 +19,7 @@
     const password = document.getElementById("password").value;
     const errorMsg = document.getElementById("error-message");
 
-    fetch('/auth/login', {
+    fetch('/webbomberos/auth/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

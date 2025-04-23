@@ -18,9 +18,9 @@
         
                 <div class="perfil">
                     <p class="bomb">LANCHA TU MARE</p>
-                    <img class="foto" src="/img/perfil.png" alt="" height="65px">
+                    <img class="foto" th:src="@{/img/perfil.png}" alt="" height="65px">
                     <p class="uwu">uw</p>
-                    <img src="/img/salida.png" alt="" height="35px" onclick="logout()" style="cursor: pointer;">
+                    <img th:src="@{/img/salida.png}" alt="" height="35px" onclick="logout()" style="cursor: pointer;">
                 </div>
         
             </div>
@@ -39,6 +39,6 @@
         console.log("Username:", username);
         console.log("Roles:", roles);
     </script>
-    <script src="/js/main.js"></script> 
+    <script th:src="@{/js/main.js}"></script> 
 </body>
 </html>
