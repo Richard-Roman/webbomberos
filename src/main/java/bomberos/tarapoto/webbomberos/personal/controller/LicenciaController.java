@@ -13,7 +13,7 @@ import bomberos.tarapoto.webbomberos.personal.service.PersonalService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/personal/estado")
+@RequestMapping("/intranet/personal/estado")
 public class LicenciaController {
 
     @Autowired
