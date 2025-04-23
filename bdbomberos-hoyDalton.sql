@@ -391,13 +391,12 @@ CREATE TABLE IF NOT EXISTS reportesincidencias (
 -- Tabla proveedor
 CREATE TABLE IF NOT EXISTS proveedor (
     idProveedor INT AUTO_INCREMENT PRIMARY KEY,
-    nombres_proveedor VARCHAR(255) NOT NULL,
-    apellidos_proveedor VARCHAR(255) NOT NULL,
+    nombre_proveedor VARCHAR(255) NOT NULL,
     tipo_proveedor VARCHAR(20) NOT NULL,
     docIdentidad_proveedor VARCHAR(8) NOT NULL,
     tipo_docidentidad VARCHAR(3) NOT NULL,
     telefono VARCHAR(9) NOT NULL,
-    registroActivo TINYINT(1) DEFAULT 1 NOT NULL,
+    mostrar INT DEFAULT 1 NOT NULL,
     CONSTRAINT CHK_proveedor_registroActivo CHECK (registroActivo IN (0, 1))
 );
 
@@ -409,8 +408,8 @@ CREATE TABLE IF NOT EXISTS adquisicion (
     fecha_adquisicion DATE NOT NULL,
     idProveedor INT NOT NULL,
     monto_estimado DECIMAL(18,2) NOT NULL,
-    docaquisicion VARCHAR(30) NOT NULL,
-    registroActivo TINYINT(1) DEFAULT 1 NOT NULL,
+    doc_adquisicion VARCHAR(30) NOT NULL,
+    mostrar INT DEFAULT 1 NOT NULL,
     CONSTRAINT CHK_adquisicion_registroActivo CHECK (registroActivo IN (0, 1)),
     FOREIGN KEY (idProveedor) REFERENCES proveedor(idProveedor)
 );
