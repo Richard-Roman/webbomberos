@@ -35,7 +35,7 @@ public class EstudioController {
                 .collect(Collectors.toList());
 
         model.addAttribute("bomberos", bomberosConEstudios);
-        return "estudio/listarEstu";
+        return "intranet/Personal/estudio/listarEstu";
     }
 
     // Mostrar formulario para registrar nuevo estudio
@@ -57,7 +57,7 @@ public class EstudioController {
             model.addAttribute("estudio", new Estudio());
         }
 
-        return "estudio/formEstudio";
+        return "intranet/Personal/estudio/formEstudio";
     }
 
     // Mostrar formulario para editar estudio o ver historial
@@ -90,7 +90,7 @@ public class EstudioController {
             model.addAttribute("estudio", new Estudio());
         }
 
-        return "estudio/formEstudio";
+        return "intranet/Personal/estudio/formEstudio";
     }
 
     // Guardar estudio
@@ -99,7 +99,7 @@ public class EstudioController {
         if (estudio.getPersonal() == null || estudio.getPersonal().getIdPersonal() == null) {
             model.addAttribute("error", "Debe seleccionar un bombero.");
             model.addAttribute("estudio", new Estudio());
-            return "estudio/formEstudio";
+            return "intranet/Personal/estudio/formEstudio";
         }
 
         Personal personalActual = personalService.obtenerPorId(estudio.getPersonal().getIdPersonal())

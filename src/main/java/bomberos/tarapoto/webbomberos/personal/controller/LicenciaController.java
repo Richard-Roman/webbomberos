@@ -27,7 +27,7 @@ public class LicenciaController {
     public String listarBomberosConLicencias(Model model) {
         List<Personal> bomberos = personalService.listarActivosConLicencias();
         model.addAttribute("bomberos", bomberos);
-        return "estado/listarLic";
+        return "intranet/Personal/estado/listarLic";
     }
 
     // Mostrar formulario para registrar una NUEVA licencia, con datos del bombero
@@ -48,7 +48,7 @@ public class LicenciaController {
             model.addAttribute("error", "Debe ingresar un DNI válido.");
         }
 
-        return "estado/formLicencia"; // mismo formulario
+        return "intranet/Personal/estado/formLicencia"; // mismo formulario
     }
 
     // Formulario para ingresar nueva licencia o editar estado
@@ -80,7 +80,7 @@ public class LicenciaController {
                                                                       // aunque no haya búsqueda
         }
 
-        return "estado/formLicencia";
+        return "intranet/Personal/estado/formLicencia";
     }
 
     // Guardar estado + licencia
@@ -90,7 +90,7 @@ public class LicenciaController {
         if (licencia.getPersonal() == null || licencia.getPersonal().getIdPersonal() == null) {
             model.addAttribute("error", "Debe seleccionar un bombero antes de guardar.");
             model.addAttribute("licencia", new LicenciaSuspendido()); // Para mantener el formulario visible
-            return "estado/formLicencia";
+            return "intranet/Personal/estado/formLicencia";
         }
 
         // Obtener el bombero real desde la BD
