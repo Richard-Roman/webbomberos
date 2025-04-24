@@ -16,7 +16,7 @@ public class EstudioService {
     private IEstudioDAO estudioDAO;
 
     public List<Estudio> listarPorPersonal(Integer idPersonal) {
-        return estudioDAO.findByPersonalIdPersonalAndRegistroActivo(idPersonal, "1");
+        return estudioDAO.findByPersonalIdPersonalAndDesactivado(idPersonal, "1");
     }
 
     public Estudio guardar(Estudio estudio) {

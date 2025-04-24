@@ -67,7 +67,7 @@ CREATE TABLE estudios (
     fecha_expedicion DATE,
     tipo VARCHAR(50),
     imagen_documento TEXT,
-    registroActivo TINYINT(1) DEFAULT 1 NOT NULL,
+    desactivado TINYINT(1) DEFAULT 1 NOT NULL,
     CONSTRAINT CHK_estudios_registroActivo CHECK (registroActivo IN (0, 1)),
     FOREIGN KEY (id_personal) REFERENCES personal(id_personal)
 );

@@ -33,6 +33,9 @@ public class EstudioController {
         List<Personal> bomberosConEstudios = bomberosActivos.stream()
                 .filter(b -> !estudioService.listarPorPersonal(b.getIdPersonal()).isEmpty())
                 .collect(Collectors.toList());
+        
+        System.out.println(bomberosActivos.toString());
+        System.out.println(bomberosConEstudios.toString());
 
         model.addAttribute("bomberos", bomberosConEstudios);
         return "intranet/Personal/estudio/listarEstu";

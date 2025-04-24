@@ -56,7 +56,8 @@ public class SecurityConfig {
                 
                 //Modulo Personal
                 authRequest.requestMatchers("/intranet/personal/listar").hasAnyRole("ADMIN", "DEVELOPER");
-
+                authRequest.requestMatchers("/intranet/personal/estudio").hasAnyRole("ADMIN", "DEVELOPER");
+                authRequest.requestMatchers("/intranet/personal/estudio/**").hasAnyRole("ADMIN", "DEVELOPER");
                 //Modulo Inventario
                 authRequest.requestMatchers("/intranet/inventario/prueba").hasAnyRole("ADMIN", "DEVELOPER");
                 
