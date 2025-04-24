@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import bomberos.tarapoto.webbomberos.personal.model.Personal;
+import bomberos.tarapoto.webbomberos.personal.service.PersonalService;
 import bomberos.tarapoto.webbomberos.seguridad.model.RegisterUserRequest;
 import bomberos.tarapoto.webbomberos.seguridad.model.Usuarios;
 import bomberos.tarapoto.webbomberos.seguridad.model.Roles;
@@ -32,6 +35,8 @@ public class GUsuarioscontroller {
     @Autowired
     private IGUsuariosDAO usuariosDAO;
     @Autowired
+    private PersonalService personalService;
+    @Autowired
     private IRolesDAO rolesDao;
     private final PasswordEncoder passwordEncoder;
 
@@ -40,9 +45,9 @@ public class GUsuarioscontroller {
     @GetMapping(value = "vusers")
     public String Usuarios(Model model) {
         List<Roles> listaroles = rolesDao.findAll();
-        List<Usuarios> lista = usuariosDAO.findAll();
+        List<Usuarios> listauser  = usuariosDAO.findAllWithPersonal();  
         model.addAttribute("listaroles", listaroles);
-        model.addAttribute("lista", lista);
+        model.addAttribute("lista", listauser);
         return "intranet/Usuarios/vusers";
     }
     
@@ -57,6 +62,7 @@ public String registraruser(@ModelAttribute RegisterUserRequest usuario, Redirec
         .accountNoLocked(usuario.getAccountNoLocked())
         .accountNoExpired(true)
         .credentialNoExpired(true)
+        .personal(personalService.obtenerPorId(usuario.getIdPersonal()).orElseThrow())
         .build(); 
     usuariosDAO.save(nuevousuario);
     // Mensaje flash para usarlo si deseas mostrar en la vista
@@ -69,8 +75,10 @@ public String registraruser(@ModelAttribute RegisterUserRequest usuario, Redirec
     public String visualizaruser(@PathVariable Integer id, Model model) {
         Optional<Usuarios> usuarioid = usuariosDAO.findById(id);
         Usuarios usuario = usuarioid.get();
+        Personal p = usuario.getPersonal();
         List<Roles> listaroles = rolesDao.findAll();
         model.addAttribute("usuario", usuario);   
+        model.addAttribute("p", p);
         model.addAttribute("listaroles", listaroles);
         model.addAttribute("modo", "visualizar"); 
         return "intranet/Usuarios/formusers :: visualizarForm";
@@ -80,8 +88,10 @@ public String registraruser(@ModelAttribute RegisterUserRequest usuario, Redirec
     public String editaruser(@PathVariable Integer id, Model model) {
         Optional<Usuarios> usuarioid = usuariosDAO.findById(id);
         Usuarios usuario = usuarioid.get();
+        Personal p = usuario.getPersonal();
         List<Roles> listaroles = rolesDao.findAll();
         model.addAttribute("usuario", usuario);   
+        model.addAttribute("p", p);
         model.addAttribute("listaroles", listaroles);
         model.addAttribute("modo", "editar");
         return "intranet/Usuarios/formusers :: editarForm";
@@ -130,6 +140,18 @@ public String registraruser(@ModelAttribute RegisterUserRequest usuario, Redirec
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado");
         }
+    }
+
+    @GetMapping(value = "/buscarPersonal")
+    public String buscarPersonal(@RequestParam String dni, RedirectAttributes redirectAttributes, Model model) {
+        Optional<Personal> personal = personalService.buscarPorDni(dni);
+        if (personal.isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "Usuario no encontrado");
+            return "redirect:/webbomberos/intranet/Usuarios/vusers";        }
+        Personal p = personal.get();
+        System.out.println(p);
+        model.addAttribute("p", p);   
+        return "intranet/Usuarios/formusers :: datosPersonal";
     }
 
 }

@@ -12,7 +12,6 @@
                     </div>
                     <input type="file" id="fileInput" name="imagen" style="display: none;" onchange="mostrarVistaPrevia(event)">
                     <div class="botones-img">
-                        <button type="button" onclick="document.getElementById('fileInput').click()">Agregar</button>
                         <button type="button" onclick="eliminarImagen()">Eliminar</button>
                     </div>
                 </div>
@@ -23,27 +22,9 @@
                         <h4>Información del bombero</h4>
                         <hr class="divisor">
                     </div>    
-                    <div class="campo">
-                        <label>DNI:</label>
-                        <input type="text" name="dni" readonly>
-                    </div>
-                    <div class="campo">
-                        <label>Nombres:</label>
-                        <input type="text" name="nombres" readonly>
-                    </div>
-                    <div class="campo">
-                        <label>Código:</label>
-                        <input type="text" name="codigo" readonly>
-                    </div>
-                    <div class="campo">
-                        <label>Grado:</label>
-                        <select name="grado" readonly>
-                            <option>Capitán</option>
-                            <option>Teniente</option>
-                            <option>Suboficial</option>
-                            <!-- Agrega más según tus datos -->
-                        </select>
-                    </div>
+
+                    <!-- Sub-fragmento de datos personales -->
+                    <div th:replace="this :: datosPersonal"></div>
 
                     <div class="titulo-seccion">
                         <h4>Información de Usuario</h4>
@@ -102,6 +83,43 @@
         </form>
 </div>
 
+<!-- Sub-fragmento que obtiene los campos del bombero -->
+<div th:fragment="datosPersonal" id="resultadoPersonal">
+
+   <input type="hidden" name="idPersonal" id="idPersonal" readonly th:value="${p != null ? p.idPersonal : ''}">
+
+  <div class="campo">
+    <label>DNI:</label>
+    <input type="text" id="dni" name="dni" required
+           th:value="${p != null ? p.dni : ''}"
+           onblur="buscarPersonal()" />
+  </div>
+  <div class="campo">
+    <label>Nombres:</label>
+    <input type="text" name="nombres"
+           th:value="${p != null ? p.nombres : ''}"
+           readonly />
+  </div>
+  <div class="campo">
+    <label>Código:</label>
+    <input type="text" name="codigo"
+           th:value="${p != null ? p.codigoBombero : ''}"
+           readonly />
+  </div>
+  <div class="campo">
+    <label>Grado:</label>
+    <select name="grado" disabled>
+      <option th:selected="${p != null and p.grado=='Capitán'}">Capitán</option>
+      <option th:selected="${p != null and p.grado=='Teniente'}">Teniente</option>
+      <option th:selected="${p != null and p.grado=='Suboficial'}">Suboficial</option>
+    </select>
+  </div>
+</div>
+
+
+
+
+
 <!-- Fragmento para visualizar -->
 <div th:fragment="visualizarForm">
     <h3 class="titulo-formulario">FORMULARIO DE USUARIO</h3>
@@ -115,7 +133,6 @@
                 </div>
                 <input type="file" id="fileInput" name="imagen" style="display: none;" onchange="mostrarVistaPrevia(event)">
                 <div class="botones-img">
-                    <button type="button" onclick="document.getElementById('fileInput').click()">Agregar</button>
                     <button type="button" onclick="eliminarImagen()">Eliminar</button>
                 </div>
             </div>
@@ -128,19 +145,19 @@
                 </div>    
                 <div class="campo">
                     <label>DNI:</label>
-                    <input type="text" name="dni" readonly>
+                    <input type="text" name="dni" th:value="${p.dni}" readonly>
                 </div>
                 <div class="campo">
                     <label>Nombres:</label>
-                    <input type="text" name="nombres" readonly>
+                    <input type="text" name="nombres"  th:value="${p.nombres}" readonly>
                 </div>
                 <div class="campo">
                     <label>Código:</label>
-                    <input type="text" name="codigo" readonly>
+                    <input type="text" name="codigo" th:value="${p.codigoBombero}" readonly>
                 </div>
                 <div class="campo">
                     <label>Grado:</label>
-                    <select name="grado" readonly>
+                    <select name="grado" disabled>
                         <option>Capitán</option>
                         <option>Teniente</option>
                         <option>Suboficial</option>
@@ -200,6 +217,8 @@
     </form>
 </div>
 
+
+
 <!-- Fragmento para editar -->
 <div th:fragment="editarForm">
     <h3>Editar Usuario</h3>
@@ -212,7 +231,6 @@
                 </div>
                 <input type="file" id="fileInput" name="imagen" style="display: none;" onchange="mostrarVistaPrevia(event)">
                 <div class="botones-img">
-                    <button type="button" onclick="document.getElementById('fileInput').click()">Agregar</button>
                     <button type="button" onclick="eliminarImagen()">Eliminar</button>
                 </div>
             </div>
@@ -225,19 +243,19 @@
                 </div>    
                 <div class="campo">
                     <label>DNI:</label>
-                    <input type="text" name="dni" readonly>
+                    <input type="text" name="dni" th:value="${p.dni}" readonly>
                 </div>
                 <div class="campo">
                     <label>Nombres:</label>
-                    <input type="text" name="nombres" readonly>
+                    <input type="text" name="nombres" th:value="${p.nombres}" readonly>
                 </div>
                 <div class="campo">
                     <label>Código:</label>
-                    <input type="text" name="codigo" readonly>
+                    <input type="text" name="codigo" th:value="${p.codigoBombero}" readonly>
                 </div>
                 <div class="campo">
                     <label>Grado:</label>
-                    <select name="grado" readonly>
+                    <select name="grado" disabled>
                         <option>Capitán</option>
                         <option>Teniente</option>
                         <option>Suboficial</option>
