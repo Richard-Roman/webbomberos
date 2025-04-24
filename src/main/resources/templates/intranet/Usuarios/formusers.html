@@ -1,22 +1,43 @@
+<<<<<<< HEAD
 <!-- Fragmento para registrar -->
 <div th:fragment="registrarForm">
     <h3 class="titulo-formulario">FORMULARIO DE USUARIO</h3>
         <hr class="divisor-title">        
         <form th:action="@{/webbomberos/intranet/Usuarios/registraruser}" method="post">
+=======
+
+<!-- Fragmento para registrar -->
+<div th:fragment="registrarForm">
+    <div class="modal-content">
+        <h3 class="titulo-formulario">FORMULARIO DE USUARIO</h3>
+        <hr>        
+        <form action="/usuario/registrar" method="post">
+>>>>>>> 036e5a7 (Removes JWT authentication implementation)
             <!-- campos de registro -->
             <div class="formulario-usuario">  
                 <!-- Columna Izquierda: Imagen -->
                 <div class="imagen-usuario">
+<<<<<<< HEAD
                     <div class="preview-imagen">
                         <img id="preview" th:src="@{/img/perfil.png}" alt="Imagen Usuario" />
                     </div>
                     <input type="file" id="fileInput" name="imagen" style="display: none;" onchange="mostrarVistaPrevia(event)">
                     <div class="botones-img">
+=======
+                    <label>Imagen del Usuario</label>
+                    <div class="preview-imagen">
+                        <img id="preview" src="/img/default-user.png" alt="Imagen Usuario" />
+                    </div>
+                    <input type="file" id="fileInput" name="imagen" style="display: none;" onchange="mostrarVistaPrevia(event)">
+                    <div class="botones-img">
+                        <button type="button" onclick="document.getElementById('fileInput').click()">Agregar</button>
+>>>>>>> 036e5a7 (Removes JWT authentication implementation)
                         <button type="button" onclick="eliminarImagen()">Eliminar</button>
                     </div>
                 </div>
                 <!-- Columna Derecha: Campos -->
                 <div class="campos-usuario">
+<<<<<<< HEAD
 
                     <div class="titulo-seccion">
                         <h4>Información del bombero</h4>
@@ -158,11 +179,26 @@
                 <div class="campo">
                     <label>Grado:</label>
                     <select name="grado" disabled>
+=======
+                    <h4>Información de Usuario</h4>
+                    <label>DNI:</label>
+                    <input type="text" name="dni" required>
+
+                    <label>Nombres:</label>
+                    <input type="text" name="nombres" required>
+
+                    <label>Código:</label>
+                    <input type="text" name="codigo" required>
+
+                    <label>Grado:</label>
+                    <select name="grado" required>
+>>>>>>> 036e5a7 (Removes JWT authentication implementation)
                         <option>Capitán</option>
                         <option>Teniente</option>
                         <option>Suboficial</option>
                         <!-- Agrega más según tus datos -->
                     </select>
+<<<<<<< HEAD
                 </div>
 
                 <div class="titulo-seccion">
@@ -306,6 +342,29 @@
                     <select name="accountNoLocked" required>
                         <option value=true th:selected="${usuario.accountNoLocked}">Activo</option>
                         <option value=false th:selected="${!usuario.accountNoLocked}">Bloqueado</option>
+=======
+
+                    <hr>
+
+                    <h4>Credenciales de Usuario</h4>
+                    <label>Usuario:</label>
+                    <input type="text" name="usuario" required>
+
+                    <label>Contraseña:</label>
+                    <input type="password" name="password" required>
+
+                    <label>Rol:</label>
+                    <select name="rol" required>
+                        <option>Administrador</option>
+                        <option>Usuario</option>
+                        <!-- Otros roles -->
+                    </select>
+
+                    <label>Estado:</label>
+                    <select name="estado" required>
+                        <option>Activo</option>
+                        <option>Inactivo</option>
+>>>>>>> 036e5a7 (Removes JWT authentication implementation)
                     </select>
                 </div>
                 <!-- Botones de acción -->
@@ -313,11 +372,35 @@
                     <button type="submit" class="btn-guardar">
                         <i class="fa fa-save"></i> Guardar
                     </button>
+<<<<<<< HEAD
                     <button type="button" class="btn-cancelar" onclick="closeModal('modalEditar')">
+=======
+                    <button type="button" class="btn-cancelar" onclick="cerrarModal()">
+>>>>>>> 036e5a7 (Removes JWT authentication implementation)
                         <i class="fa fa-times"></i> Cancelar
                     </button>
                 </div>
             </div>
+<<<<<<< HEAD
         </div>
+=======
+        </form>
+    </div>
+</div>
+
+<!-- Fragmento para visualizar -->
+<div th:fragment="visualizarForm">
+    <h3>Visualizar Usuario</h3>
+    <div>
+        <!-- detalles del usuario en modo solo lectura -->
+    </div>
+</div>
+
+<!-- Fragmento para editar -->
+<div th:fragment="editarForm">
+    <h3>Editar Usuario</h3>
+    <form action="/usuario/editar" method="post">
+        <!-- campos editables -->
+>>>>>>> 036e5a7 (Removes JWT authentication implementation)
     </form>
 </div>

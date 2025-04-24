@@ -13,7 +13,11 @@ function resetTimer() {
 }
 
 function logout() {
+<<<<<<< HEAD
     window.location.href = '/webbomberos/auth/logout'; 
+=======
+    window.location.href = '/auth/logout'; 
+>>>>>>> 036e5a7 (Removes JWT authentication implementation)
 }
 
 document.addEventListener("DOMContentLoaded", () => {
