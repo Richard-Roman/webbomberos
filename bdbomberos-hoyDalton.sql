@@ -371,7 +371,7 @@ CREATE TABLE `personal` (
 
 CREATE TABLE `proveedor` (
   `idproveedor` int(11) NOT NULL,
-  `nombre_proveedor` varchar(255) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
   `tipo_proveedor` varchar(255) NOT NULL,
   `docidentidad_proveedor` varchar(255) DEFAULT NULL,
   `tipo_docidentidad` varchar(255) DEFAULT NULL,
