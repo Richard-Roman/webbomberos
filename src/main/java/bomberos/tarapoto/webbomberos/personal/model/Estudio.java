@@ -16,8 +16,8 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "estudios")
-@SQLDelete(sql = "UPDATE estudios SET desactivado = '1' WHERE id_estudio = ?")
-@Where(clause = "desactivado = '0'")
+@SQLDelete(sql = "UPDATE estudios SET registroActivo = '0' WHERE id_estudio = ?")
+@Where(clause = "registroActivo = '1'")
 public class Estudio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +33,7 @@ public class Estudio {
     private LocalDate fechaExpedicion;
     private String tipo;
     private String imagenDocumento;
-    private String desactivado;
+    private String registroActivo = "1";
 
     public Integer getIdEstudio() {
         return idEstudio;
@@ -100,18 +100,18 @@ public class Estudio {
     }
 
     public String isDesactivado() {
-        return desactivado;
+        return registroActivo;
     }
 
-    public void setDesactivado(String desactivado) {
-        this.desactivado = desactivado;
+    public void setDesactivado(String registroActivo) {
+        this.registroActivo = registroActivo;
     }
 
     @Override
     public String toString() {
         return "Estudio [idEstudio=" + idEstudio + ", personal=" + personal + ", nombre=" + nombre + ", descripcion="
                 + descripcion + ", fechaEmision=" + fechaEmision + ", fechaExpedicion=" + fechaExpedicion + ", tipo="
-                + tipo + ", imagenDocumento=" + imagenDocumento + ", desactivado=" + desactivado + "]";
+                + tipo + ", imagenDocumento=" + imagenDocumento + ", desactivado=" + registroActivo + "]";
     }
 
 }

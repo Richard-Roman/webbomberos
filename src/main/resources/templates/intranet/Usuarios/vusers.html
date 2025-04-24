@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Personal</title>
-    <link rel="stylesheet" href="/css/stylesmain.css">
+    <link rel="stylesheet" th:href="@{/css/stylesmain.css}">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Jersey+20&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -48,9 +48,9 @@
         
                 <div class="perfil">
                     <p class="bomb">Kent Miranda</p>
-                    <img class="foto" src="/img/perfil.png" alt="" height="65px">
+                    <img class="foto" th:src="@{/img/perfil.png}" alt="" height="65px">
                     <p class="uwu">uw</p>
-                    <img src="/img/salida.png" alt="" height="35px" onclick="logout()" style="cursor: pointer;">
+                    <img th:src="@{/img/salida.png}" alt="" height="35px" onclick="logout()" style="cursor: pointer;">
                 </div>
             </div>
             <div class="contenido">
@@ -117,10 +117,10 @@
                                 <td>
                                     <div class="acciones-contenedor">
                                         <a th:href="@{'visualizaruser/' + ${lista.Id_Usuario}}" class="accion">
-                                            <img src="/img/ver.png"  alt="Ver">
+                                            <img th:src="@{/img/ver.png}"  alt="Ver">
                                         </a>                                        
                                         <a th:href="@{'editaruser/' + ${lista.Id_Usuario}}" class="accion">
-                                            <img src="/img/editar.png" alt="Editar">
+                                            <img th:src="@{/img/editar.png}" alt="Editar">
                                         </a>                                       
                                     </div>
                                 </td>
@@ -132,7 +132,7 @@
             </div>
         </div>
     </div>
-    <script src="/js/userregistros.js"></script> 
+    <script th:src="@{/js/userregistros.js}"></script> 
     <script th:if="${usuario != null}">
         document.addEventListener('DOMContentLoaded', function() {
             const modo = /*[[${modo}]]*/ 'editar';

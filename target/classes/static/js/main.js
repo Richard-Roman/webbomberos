@@ -13,7 +13,7 @@ function resetTimer() {
 }
 
 function logout() {
-    window.location.href = '/auth/logout'; 
+    window.location.href = '/webbomberos/auth/logout'; 
 }
 
 document.addEventListener("DOMContentLoaded", () => {

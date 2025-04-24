@@ -56,10 +56,13 @@ public class SecurityConfig {
                 authRequest.requestMatchers("/webbomberos/intranet/Usuarios/buscarPersonal").hasAnyRole("ADMIN", "DEVELOPER");
 
 
+
                 
                 //Modulo Personal
-                authRequest.requestMatchers("/webbomberos/intranet/Personal/listar").hasAnyRole("ADMIN", "DEVELOPER");
+                authRequest.requestMatchers("/intranet/personal/listar").hasAnyRole("ADMIN", "DEVELOPER");
 
+                //Modulo Inventario
+                authRequest.requestMatchers("/intranet/inventario/prueba").hasAnyRole("ADMIN", "DEVELOPER");
                 
                 // Configurar el resto de endpoint - NO ESPECIFICADOS
                 authRequest.anyRequest().denyAll();

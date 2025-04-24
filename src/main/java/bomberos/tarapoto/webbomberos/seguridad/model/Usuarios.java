@@ -41,7 +41,7 @@ import lombok.Setter;
 public class Usuarios implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id_Usuario")
+    @Column(name = "id_usuario")
     private Integer Id_Usuario;
 
     @Column(name = "nombre_usuario", unique = true)
@@ -52,11 +52,11 @@ public class Usuarios implements UserDetails{
     private String email;
 
     //Cambiar a realcio onetoone con personal
+
     // -- Relación con Personal --
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_personal", referencedColumnName = "idPersonal")
     private Personal personal;
-
     @Column(name = "is_Enabled")
     private Boolean isEnabled;
     @Column(name = "account_NO_Expired")
@@ -67,7 +67,7 @@ public class Usuarios implements UserDetails{
     private Boolean credentialNoExpired;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "usuarios_roles", joinColumns = @JoinColumn(name = "ID_Usuario"), inverseJoinColumns = @JoinColumn(name="id_rol"))
+    @JoinTable(name = "usuarios_roles", joinColumns = @JoinColumn(name = "id_usuario"), inverseJoinColumns = @JoinColumn(name="id_rol"))
     private Set<Roles> roles = new HashSet<>();
 
 

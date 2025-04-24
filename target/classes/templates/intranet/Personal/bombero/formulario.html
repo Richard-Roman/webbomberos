@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${personal.idPersonal != null} ? 'Editar Personal' : 'Registrar Personal'">Formulario</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <script th:src="@{/js/formulario.js}"></script> <!-- Tu archivo JS externo -->
+
+    <style>
+        input[readonly] {
+            background-color: #e9ecef;
+            cursor: not-allowed;
+        }
+
+        .telefono-item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .btn-remove {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 th:text="${personal.idPersonal != null} ? 'Editar Bombero' : 'Registrar Bombero'"></h1>
+
+        <form th:action="@{/personal/bombero/guardar}" th:object="${personal}" method="post"
+            onsubmit="return validarFormulario()">
+
+            <input type="hidden" th:field="*{idPersonal}" />
+
+            <!-- BLOQUE DE ERROR -->
+            <div th:if="${error}" class="alert alert-danger" role="alert">
+                <span th:text="${error}"></span>
+            </div>
+
+            <!-- Campos del bombero -->
+            <div class="form-group">
+                <label for="dni">DNI:</label>
+                <input type="text" id="dni" th:field="*{dni}" maxlength="15" required
+                    th:readonly="${personal.idPersonal != null}" />
+            </div>
+
+            <div class="form-group">
+                <label for="codigoBombero">Código de Bombero:</label>
+                <input type="text" id="codigoBombero" th:field="*{codigoBombero}" maxlength="20" />
+            </div>
+
+            <div class="form-group">
+                <label for="nombres">Nombres:</label>
+                <input type="text" id="nombres" th:field="*{nombres}" required />
+            </div>
+
+            <div class="form-group">
+                <label for="apellidos">Apellidos:</label>
+                <input type="text" id="apellidos" th:field="*{apellidos}" required />
+            </div>
+
+            <div class="form-group">
+                <label for="tipoSangre">Tipo de Sangre:</label>
+                <input type="text" id="tipoSangre" th:field="*{tipoSangre}" />
+            </div>
+
+            <div class="form-group">
+                <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+                <input type="date" id="fechaNacimiento" name="fechaNacimiento"
+                    th:value="${personal.fechaNacimiento != null} ? ${#temporals.format(personal.fechaNacimiento, 'yyyy-MM-dd')} : ''"
+                    required />
+
+            </div>
+
+            <div class="form-group">
+                <label for="grado">Grado:</label>
+                <input type="text" id="grado" th:field="*{grado}" />
+            </div>
+
+            <div class="form-group">
+                <label for="cargo">Cargo:</label>
+                <input type="text" id="cargo" th:field="*{cargo}" />
+            </div>
+
+            <div class="form-group">
+                <label for="alergias">Alergias:</label>
+                <textarea id="alergias" th:field="*{alergias}" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="fotoPerfil">Foto de Perfil (URL):</label>
+                <input type="text" id="fotoPerfil" th:field="*{fotoPerfil}" />
+            </div>
+
+            <div class="form-group">
+                <label for="estado">Estado:</label>
+                <select id="estado" th:field="*{estado}">
+                    <option value="Activo" th:selected="*{estado} == 'Activo'">Activo</option>
+                    <option value="Inactivo" th:selected="*{estado} == 'Inactivo'">Inactivo</option>
+                    <option value="Licencia" th:selected="*{estado} == 'Licencia'">Licencia</option>
+                    <option value="Suspendido" th:selected="*{estado} == 'Suspendido'">Suspendido</option>
+                </select>
+            </div>
+
+            <!-- 📱 Sección de teléfonos de emergencia -->
+            <h3>Teléfonos de Emergencia</h3>
+            <div id="telefonosContainer">
+                <div th:each="telefono, iterStat : *{telefonosEmergencia}" class="telefono-item">
+                    <input type="hidden" th:field="*{telefonosEmergencia[__${iterStat.index}__].idTelefono}" />
+                    <input type="hidden" th:field="*{telefonosEmergencia[__${iterStat.index}__].desactivado}" />
+
+                    <label>Nombre del Contacto:</label>
+                    <input type="text" th:field="*{telefonosEmergencia[__${iterStat.index}__].nombreContacto}" />
+
+                    <label>Parentesco:</label>
+                    <input type="text" th:field="*{telefonosEmergencia[__${iterStat.index}__].parentesco}" />
+
+                    <label>Teléfono:</label>
+                    <input type="text" th:field="*{telefonosEmergencia[__${iterStat.index}__].telefono}" />
+
+                    <button type="button" class="btn-remove" onclick="eliminarTelefono(this)">Eliminar</button>
+                </div>
+
+            </div>
+
+            <!-- Botón para agregar más -->
+            <button type="button" class="btn btn-secondary" onclick="agregarTelefono()">Agregar Teléfono de
+                Emergencia</button>
+
+
+            <!-- Botones finales -->
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">
+                    <span th:text="${personal.idPersonal != null} ? 'Actualizar' : 'Registrar'"></span>
+                </button>
+                <a th:href="@{/personal/bombero}" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

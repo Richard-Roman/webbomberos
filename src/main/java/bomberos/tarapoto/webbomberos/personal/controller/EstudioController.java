@@ -14,7 +14,7 @@ import bomberos.tarapoto.webbomberos.personal.service.EstudioService;
 import bomberos.tarapoto.webbomberos.personal.service.PersonalService;
 
 @Controller
-@RequestMapping("/personal/estudio")
+@RequestMapping("intranet/personal/estudio")
 public class EstudioController {
 
     @Autowired
@@ -35,7 +35,7 @@ public class EstudioController {
                 .collect(Collectors.toList());
 
         model.addAttribute("bomberos", bomberosConEstudios);
-        return "estudio/listarEstu";
+        return "intranet/Personal/estudio/listarEstu";
     }
 
     // Mostrar formulario para registrar nuevo estudio
@@ -57,7 +57,7 @@ public class EstudioController {
             model.addAttribute("estudio", new Estudio());
         }
 
-        return "estudio/formEstudio";
+        return "intranet/Personal/estudio/formEstudio";
     }
 
     // Mostrar formulario para editar estudio o ver historial
@@ -90,7 +90,7 @@ public class EstudioController {
             model.addAttribute("estudio", new Estudio());
         }
 
-        return "estudio/formEstudio";
+        return "intranet/Personal/estudio/formEstudio";
     }
 
     // Guardar estudio
@@ -99,7 +99,7 @@ public class EstudioController {
         if (estudio.getPersonal() == null || estudio.getPersonal().getIdPersonal() == null) {
             model.addAttribute("error", "Debe seleccionar un bombero.");
             model.addAttribute("estudio", new Estudio());
-            return "estudio/formEstudio";
+            return "intranet/Personal/estudio/formEstudio";
         }
 
         Personal personalActual = personalService.obtenerPorId(estudio.getPersonal().getIdPersonal())
@@ -109,7 +109,7 @@ public class EstudioController {
         estudio.setDesactivado("0");
         estudioService.guardar(estudio);
 
-        return "redirect:/personal/estudio";
+        return "redirect:/intranet/personal/estudio";
     }
 
     // Eliminar estudio (lógico, si configuras la entidad correctamente)
@@ -121,6 +121,6 @@ public class EstudioController {
             estudio.setDesactivado("1");
             estudioService.guardar(estudio); // borrado lógico
         }
-        return "redirect:/personal/estudio";
+        return "redirect:/intranet/personal/estudio";
     }
 }
