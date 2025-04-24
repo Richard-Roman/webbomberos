@@ -46,13 +46,17 @@ public class SecurityConfig {
                 authRequest.requestMatchers("/auth/**","/css/**", "/js/**", "/img/**").permitAll();
 
                 // Configurar los endpoints privados
-                authRequest.requestMatchers("/intranet/main").authenticated();
-                authRequest.requestMatchers("/intranet/perfil").hasAnyRole("USER");
-                authRequest.requestMatchers("/intranet/Usuarios/vusers").hasAnyRole("ADMIN", "DEVELOPER");
-                authRequest.requestMatchers("/intranet/Usuarios/registraruser").hasAnyRole("ADMIN", "DEVELOPER");
-                authRequest.requestMatchers("/intranet/Usuarios/visualizaruser/{id}").hasAnyRole("ADMIN", "DEVELOPER");
-                authRequest.requestMatchers("/intranet/Usuarios/editaruser/{id}").hasAnyRole("ADMIN", "DEVELOPER");
-                authRequest.requestMatchers("/intranet/Usuarios/formusers").hasAnyRole("ADMIN", "DEVELOPER");
+                authRequest.requestMatchers("/webbomberos/intranet/main").authenticated();
+                authRequest.requestMatchers("/webbomberos/intranet/perfil").hasAnyRole("USER");
+                authRequest.requestMatchers("/webbomberos/intranet/Usuarios/vusers").hasAnyRole("ADMIN", "DEVELOPER");
+                authRequest.requestMatchers("/webbomberos/intranet/Usuarios/registraruser").hasAnyRole("ADMIN", "DEVELOPER");
+                authRequest.requestMatchers("/webbomberos/intranet/Usuarios/visualizaruser/{id}").hasAnyRole("ADMIN", "DEVELOPER");
+                authRequest.requestMatchers("/webbomberos/intranet/Usuarios/editaruser/{id}").hasAnyRole("ADMIN", "DEVELOPER");
+                authRequest.requestMatchers("/webbomberos/intranet/Usuarios/formusers").hasAnyRole("ADMIN", "DEVELOPER");
+                authRequest.requestMatchers("/webbomberos/intranet/Usuarios/buscarPersonal").hasAnyRole("ADMIN", "DEVELOPER");
+
+
+
                 
                 //Modulo Personal
                 authRequest.requestMatchers("/intranet/personal/listar").hasAnyRole("ADMIN", "DEVELOPER");

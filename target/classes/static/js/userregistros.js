@@ -132,3 +132,26 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
       });
+
+      
+      function buscarPersonal() {
+        const dni = document.getElementById('dni').value.trim();
+        if (!dni) return;
+      
+        fetch(`/webbomberos/intranet/Usuarios/buscarPersonal?dni=${encodeURIComponent(dni)}`)
+          .then(resp => {
+            if (!resp.ok) throw new Error('No encontrado');
+            return resp.text();               // recibimos HTML del fragmento
+          })
+          .then(htmlFragment => {
+            // volcamos el fragmento en el contenedor
+            document.getElementById('resultadoPersonal').innerHTML = htmlFragment;
+      
+            // opcional: habilitar otros campos del formulario si procede
+          })
+          .catch(err => {
+            console.error(err);
+            document.getElementById('resultadoPersonal').innerHTML = '';
+            // mostrar mensaje de error al usuario…
+          });
+      }

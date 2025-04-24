@@ -1,0 +1,102 @@
+<!-- Fragmento para registrar -->
+<div th:fragment="registrarForm">
+    <h3 class="titulo-formulario">FORMULARIO DE USUARIO</h3>
+        <hr class="divisor-title">        
+        <form th:action="@{/webbomberos/intranet/Personal/registrarbomero}" method="post">
+            <!-- campos de registro -->
+            <div class="formulario-usuario">  
+                <!-- Columna Izquierda: Imagen -->
+                <div class="imagen-usuario">
+                    <div class="preview-imagen">
+                        <img id="preview" src="/img/perfil.png" alt="Imagen Usuario" />
+                    </div>
+                    <input type="file" id="fileInput" name="imagen" style="display: none;" onchange="mostrarVistaPrevia(event)">
+                    <div class="botones-img">
+                        <button type="button" onclick="eliminarImagen()">Eliminar</button>
+                    </div>
+                </div>
+                <!-- Columna Derecha: Campos -->
+                <div class="campos-usuario">
+
+                    <div class="titulo-seccion">
+                        <h4>Información del bombero</h4>
+                        <hr class="divisor">
+                    </div>    
+                    <div class="campo">
+                        <label>DNI:</label>
+                        <input type="text" name="dni" readonly>
+                    </div>
+                    <div class="campo">
+                        <label>Nombres:</label>
+                        <input type="text" name="nombres" readonly>
+                    </div>
+                    <div class="campo">
+                        <label>Código:</label>
+                        <input type="text" name="codigo" readonly>
+                    </div>
+                    <div class="campo">
+                        <label>Grado:</label>
+                        <select name="grado" readonly>
+                            <option>Capitán</option>
+                            <option>Teniente</option>
+                            <option>Suboficial</option>
+                            <!-- Agrega más según tus datos -->
+                        </select>
+                    </div>
+
+                    <div class="titulo-seccion">
+                        <h4>Información de Usuario</h4>
+                        <hr class="divisor">
+                    </div>
+                    <div class="campo">
+                        <label>Usuario:</label>
+                        <input type="text" name="username" required>
+                    </div>
+
+                    <div class="campo">
+                        <label>Contraseña:</label>
+                        <input type="password" name="password" required>
+                    </div>
+                    <div class="campo">
+                        <label>Correo:</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div class="campo">
+                        <label>Roles:</label>
+                        <div class="custom-dropdown">
+                            <div class="dropdown-btn" onclick="toggleDropdown(this)">Seleccionar roles</div>
+                            <div class="dropdown-content">
+                                <label th:each="rol : ${listaroles}">
+                                    <input type="checkbox"
+                                           name="roles"
+                                           th:value="${rol.roleEnum}">
+                                    <span th:text="${rol.roleEnum}">ROL</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="campo">
+                        <label>Cuenta:</label>
+                        <select name="isEnabled" required>
+                            <option value=true>Habilitada</option>
+                            <option value=false>Desabilitada</option>
+                        </select>
+                        <label>Estado:</label>
+                        <select name="accountNoLocked" required>
+                            <option value=true>Activo</option>
+                            <option value=false>Bloqueado</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- Botones de acción -->
+            <div class="botones-formulario">
+                <button type="submit" class="btn-guardar">
+                    <i class="fa fa-save"></i> Guardar
+                </button>
+                <button type="button" class="btn-cancelar" onclick="closeModal('modalRegistrar')">
+                    <i class="fa fa-times"></i> Cancelar
+                </button>
+            </div>
+        </form>
+</div>

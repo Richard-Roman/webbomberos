@@ -93,11 +93,27 @@
                         <tbody>
                             <tr th:each="lista: ${lista}">
                                 <td>[[${lista.username}]]</td>
-                                <td>Kent Tare Quispe Tananta</td>
-                                <td>120-1230-12-A</td>
-                                <td>Capitán</td>
-                                <td>Desarrollador</td>
-                                <td><span class="activo">Activo</span></td>
+                                <td th:text="${lista.personal.nombres}">Nombre Bombero</td>
+                                <td th:text="${lista.personal.codigoBombero}">Código</td>
+                                <td th:text="${lista.personal.grado}">Grado</td>
+                                <td>
+                                    <div class="custom-dropdown">
+                                      <div class="dropdown-btn" onclick="toggleDropdown(this)">
+                                        <!-- texto del botón: puedes mostrar “Roles (n)” o un icono -->
+                                        Roles (<span th:text="${#lists.size(lista.roles)}">0</span>) ▾
+                                      </div>
+                                      <div class="dropdown-content">
+                                        <label th:each="rol : ${lista.roles}">
+                                          <input type="checkbox"
+                                                 disabled
+                                                 checked
+                                                 th:value="${rol.roleEnum}" />
+                                          <span th:text="${rol.roleEnum}">ROL</span>
+                                        </label>
+                                      </div>
+                                    </div>
+                                  </td>
+                                <td>[[${lista.isEnabled}]]</td>
                                 <td>
                                     <div class="acciones-contenedor">
                                         <a th:href="@{'visualizaruser/' + ${lista.Id_Usuario}}" class="accion">
@@ -106,7 +122,6 @@
                                         <a th:href="@{'editaruser/' + ${lista.Id_Usuario}}" class="accion">
                                             <img th:src="@{/img/editar.png}" alt="Editar">
                                         </a>                                       
-                                         <button class="accion"><img th:src="@{/img/desactivar.png}" alt="Eliminar"></button>
                                     </div>
                                 </td>
                             </tr>
